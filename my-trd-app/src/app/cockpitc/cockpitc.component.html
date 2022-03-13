@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-xs-12">
+        <label>Server Name</label>
+        <input type="text" class="form-control" [(ngModel)]="newServserName" name="" id="">
+        <label>Server Content</label>
+        <input type="text" class="form-control" [(ngModel)]="newServserContent" name="" id="">
+        <br>
+        <label>ServerName Reference Content</label>
+        <input type="text" class="form-control" name="" id="" #localRefName>
+        <br>
+        <label>ServerContent Reference Content</label>
+        <input type="text" class="form-control" name="" id="" #localRefCont>
+        <br>
+        {{localRefName.value}}<br>{{localRefCont.value}}  
+        <button class="btn btn-danger" (click)="funcLocalRef(localRefName)">Ref Data</button>
+        &nbsp;<button class="btn btn-primary" (click)="onaddServer()">Add Server</button>
+        &nbsp;<button class="btn btn-primary" (click)="onaddBlueServer()">Add Blue Server</button>
+    </div>
+</div>
