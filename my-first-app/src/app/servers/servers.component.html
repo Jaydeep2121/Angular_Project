@@ -1,0 +1,23 @@
+<p>servers works!</p>
+<input type="text" class="form-control" (input)="MyEvent($event)" ><br>
+<input type="text" class="form-control" [(ngModel)]="serverName" ><br>
+
+<!-- <p>{{ serverName }}</p> -->
+<button class="btn btn-danger" [disabled]="!allow" (click)="funcServCret()">Add server</button>
+<!-- <p>{{ serverstatus }}</p><br> -->
+<p *ngIf="serverCreated;else no_server">server Was created,server Name is {{serverName}}</p>
+<ng-template #no_server>
+    <p>
+        no server found
+    </p>
+</ng-template>
+<input type="text" class="form-control" [(ngModel)]="UserName"><br>
+<button class="btn btn-primary" [disabled]="UserName===''" (click)="UserName=''">Reset UserName</button><br>
+<!--<p>{{ allow }}</p>  string interpolation-->
+<!-- <p [innerText]="allow"></p> property binding -->
+<!-- <app-server></app-server>
+<app-server></app-server> -->
+<app-server *ngFor="let s of servers; let i = index"></app-server>
+<div *ngFor="let s of servers; let i = index">
+    ngFor index: {{i}} value : {{s}} 
+</div>
