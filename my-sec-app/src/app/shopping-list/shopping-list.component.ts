@@ -27,6 +27,10 @@ export class ShoppingListComponent implements OnInit {
       }
     );
   }
+  onEditing(index:number){
+    this.shlstServ.startEditing.next(index);
+  }
+
   ngOnDestroy(){
     this.igChangeSub.unsubscribe();
   }
