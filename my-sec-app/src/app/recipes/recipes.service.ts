@@ -8,7 +8,7 @@ import { Recipe } from './recipes.model';
 @Injectable()
 export class RecipeService{
     recipeSelected = new EventEmitter<Recipe>();
-    
+    recipeChnaged = new Subject<Recipe[]>();
     private recipes: Recipe[]= [ 
         new Recipe(
             'Pasta',
@@ -47,5 +47,17 @@ export class RecipeService{
     constructor(private slService:ShoppingListService){}
     addIngreShoppList(ingred:Ingredients[]){
         this.slService.addIng_to_shoppingLst(ingred);
+    }
+    addRecipe(recip:Recipe){
+        this.recipes.push(recip);
+        this.recipeChnaged.next(this.recipes.slice());
+    }
+    updateRecipe(index:number,newRecip:Recipe){
+        this.recipes[index]=newRecip;
+        this.recipeChnaged.next(this.recipes.slice());
+    }
+    deleteRecipe(index:number){
+        this.recipes.splice(index,1);
+        this.recipeChnaged.next(this.recipes.slice());
     }
 }
