@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { Post } from './post.model';
+import { PostService } from './post.service';
 
 @Component({
   selector: 'app-root',
@@ -11,35 +13,42 @@ import { map } from 'rxjs/operators';
 export class AppComponent {
   Title:string='';
   Content:string='';
-  constructor(private http:HttpClient){}
+  loadedPost:Post[] = [];
+  isFetching = false;
+  flag:number=0;
+  error = null;
+  private errorSub:Subscription;
+  constructor(private http:HttpClient,private PostSer:PostService){}
 
   ngOnInit(){
-    this.fetchPost();
-  }
-  onSubmit(postdata:{title:string,content:string},f:NgForm){
-    this.http.post(
-      'https://my-db-project-e725a-default-rtdb.firebaseio.com/PostData.json',
-      postdata
-    ).subscribe(responseData=>{
-      console.log(responseData);
+      this.errorSub=this.PostSer.error.subscribe((errorMessage:any)=>{
+      this.error=errorMessage;
     });
+  }
+  onSubmit(postdata:Post,f:NgForm){
+    this.PostSer.createAndStrorPost(postdata.title,postdata.content);
     f.reset();
   }
-  private fetchPost(){
-    this.http.get(
-      'https://my-db-project-e725a-default-rtdb.firebaseio.com/PostData.json'
-    ).pipe(
-      map((responseData:any)=>{
-        const postArray = [];
-        for(const key in responseData){
-            if(responseData.hasOwnProperty(key)){
-              postArray.push({ ...responseData[key],id:key});
-            }          
-        }
-        return postArray;
-      })
-    ).subscribe(data=>{
-      console.log(data)
+  onClearPost(){
+    this.PostSer.deletepost().subscribe(()=>{
+      this.loadedPost = [];
     });
+  }
+  onFetchPost(){
+    this.isFetching=true;
+    this.PostSer.fetchPosts().subscribe(data=>{
+      this.flag=1;
+      this.loadedPost=data;
+    },error=>{
+      this.error = error.error.error;    
+      console.log(error);
+    });
+    this.isFetching=false;
+  }
+  onHandleErr(){
+    this.error=null;
+  }
+  ngOnDestroy(){
+    this.errorSub.unsubscribe();
   }
 }

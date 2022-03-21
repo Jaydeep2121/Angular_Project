@@ -12,7 +12,35 @@
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Send Post</button>
+        <hr>
+        <button type="button" 
+                class="btn btn-primary"
+                (click)="onFetchPost()"
+                >Fetch Post</button>&nbsp;
+        <button type="button" 
+                class="btn btn-danger"
+                [disabled]="loadedPost.length < 1"
+                (click)="onClearPost()"
+                >Clear Post</button>
       </form>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <p *ngIf="loadedPost.length < 1 && !isFetching && flag!=0">No Post Available</p>
+      <ul class="list-group" *ngIf="loadedPost.length >= 1 && !isFetching">
+        <li class="list-group-item" *ngFor="let post of loadedPost">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.content }}</p>
+        </li>
+      </ul>
+    </div>
+    <p *ngIf="isFetching && !error">Loading...</p>
+    <div class="alert alert-danger" *ngIf="error">
+      <h1>An Error Occured!</h1>
+      <p>{{ error }}</p>
+      <button class="btn btn-danger" (click)="onHandleErr()">Ok</button>
     </div>
   </div>
 </div>
