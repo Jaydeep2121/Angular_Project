@@ -10,7 +10,7 @@ import { AuthResponseData, AuthService } from './auth.service';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit {
-  constructor(private authSer: AuthService,private router:Router) {}
+  constructor(private authSer: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
   loginMode = true;
@@ -47,5 +47,8 @@ export class AuthComponent implements OnInit {
       }
     );
     form.reset();
+  }
+  onHandleError() {
+    this.error = null;
   }
 }
