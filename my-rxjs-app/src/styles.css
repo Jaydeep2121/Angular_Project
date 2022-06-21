@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+ul.tecList{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ul.tecList li{
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 13px;
+    margin-bottom: 10px;
+}
+ul.tecList.error li{
+    color: red;
+    background: #ff000024;
+    border-color: red;
+}
+ul.tecList.completed li{
+    color: green;
+    background: #00800033;
+    border-color: green;
+}

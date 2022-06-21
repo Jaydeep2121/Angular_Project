@@ -9,6 +9,12 @@ import { ObservableComponent } from './observable/observable.component';
 import { FromEventComponent } from './observable/from-event/from-event.component';
 import { ListComponent } from './observable/list/list.component';
 import { IntervalComponent } from './observable/interval/interval.component';
+import { OfFromComponent } from './observable/of-from/of-from.component';
+import { ToArrayComponent } from './observable/to-array/to-array.component';
+import { CusrtomObserComponent } from './observable/cusrtom-obser/cusrtom-obser.component';
+import { MapComponent } from './observable/map/map.component';
+import { PluckComponent } from './observable/pluck/pluck.component';
+import { FilterComponent } from './observable/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +24,13 @@ import { IntervalComponent } from './observable/interval/interval.component';
     ObservableComponent,
     FromEventComponent,
     ListComponent,
-    IntervalComponent
+    IntervalComponent,
+    OfFromComponent,
+    ToArrayComponent,
+    CusrtomObserComponent,
+    MapComponent,
+    PluckComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

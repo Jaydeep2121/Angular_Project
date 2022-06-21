@@ -1,0 +1,51 @@
+<div class="my-3">
+    <h2>Pluck</h2>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Ex-01</strong>
+            <hr>
+            <p class="border bg-light py-2 px-3 rounded">
+                <strong>
+                    Pluck
+                </strong>by Property
+            </p>
+            <br>
+            <table>
+                <tr>
+                    <th scope="col">Name</th>
+                </tr>
+                <tr *ngFor="let item of data">{{item}}
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <strong>Ex-02</strong>
+            <hr>
+            <p class="border bg-light py-2 px-3 rounded">
+                <strong>
+                    Pluck
+                </strong>Job > Title
+            </p>
+            <br>
+            <table>
+                <tr>
+                    <th scope="col">Title</th>
+                </tr>
+                <tr *ngFor="let item of data1">{{item}}
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-12">
+            <strong>Ex-03</strong>
+            <hr>
+            <p class="border bg-light py-2 px-3 rounded">
+                <strong>
+                    Map
+                </strong>Map Names
+            </p>
+            <br>
+            <ul id="elementAdd"></ul>
+        </div>
+    </div>
+</div>
