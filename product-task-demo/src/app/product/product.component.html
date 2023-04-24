@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="table-wrap">
+      <table class="table table-responsive table-borderless">
+          <thead>
+              <th>ProductId<span (click)="getAllProductData('id')">&#8645;</span></th>
+              <th>ProductCode<span (click)="getAllProductData('code')">&#8645;</span></th>
+              <th>ProductImage</th>
+              <th>Product<span (click)="getAllProductData('title')">&#8645;</span></th>
+              <th>Category <span (click)="getAllProductData('category')">&#8645;</span></th>
+              <th>Price<span (click)="getAllProductData('price')">&#8645;</span></th>
+          </thead>
+          <tbody>
+            <div class="loader" *ngIf="isLoading"></div>
+            <ng-container *ngIf="!isLoading">
+                <tr class="align-middle alert border-bottom" role="alert" *ngFor="let product of productData; let i = index">
+                    <td> {{ product.id }} </td>
+                    <td> {{ product.code }} </td>
+                    <td class="text-center">
+                        <img class="pic" [src]="product.thumbnail" alt="">
+                    </td>
+                    <td>
+                        <div>
+                            <p class="m-0 fw-bold">{{ product.title }}</p>
+                            <p class="m-0 text-muted description">{{ product.description }}</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="fw-600">{{ product.category }}</div>
+                    </td>
+                    <td class="d-">&#36;{{ product.price }} </td>
+                </tr>
+            </ng-container>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>Records : {{ productData.length }}</td>
+            </tr>
+          </tfoot>
+      </table>
+  </div>
+</div>
